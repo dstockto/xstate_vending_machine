@@ -87,6 +87,11 @@ export const machine = setup({
         },
         DisplaySelectionPrice: {
             tags: ['displayMessage'],
+            on: {
+                putInMoney: {
+                    target: "AddMoney",
+                },
+            },
             after: {
                 "3000": {
                     target: "IdleWithNoMoney",
@@ -95,6 +100,11 @@ export const machine = setup({
         },
         DisplayNoMoneyError: {
             tags: ['displayMessage'],
+            on: {
+                putInMoney: {
+                    target: "AddMoney",
+                },
+            },
             after: {
                 "3000": {
                     target: "IdleWithNoMoney",
@@ -146,6 +156,11 @@ export const machine = setup({
         },
         DisplayInsufficientMoneyError: {
             tags: ['displayMessage'],
+            on: {
+                putInMoney: {
+                    target: "AddMoney",
+                },
+            },
             after: {
                 "3000": {
                     target: "IdleWithMoney",
