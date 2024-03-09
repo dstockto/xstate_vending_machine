@@ -1,0 +1,1 @@
+Trying to make a simple vending maching simulator using XState and a cruddy visualization of it with React.

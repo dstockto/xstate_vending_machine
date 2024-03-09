@@ -1,0 +1,87 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.vending_machine {
+  border: 2px solid black;
+  background: #0f6ee5;
+  position: relative;
+  width: 500px;
+  height: 700px;
+}
+
+.bottle_display {
+  border: 2px solid #311bf6;
+  background: #747bff;
+  width: 350px;
+  height: 500px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.dispenser {
+  border: 1px solid black;
+  background: black;
+  width: 150px;
+  height: 80px;
+  position: absolute;
+  top: 550px;
+  left: 150px;
+}
+
+.digital_display {
+  border: 1px solid white;
+  width: 100px;
+  height: 50px;
+  position: absolute;
+  top: 75px;
+  left: 386px;
+  background: black;
+  color: red;
+}
+
+.coin_slot {
+  border: 1px solid black;
+  background: yellow;
+  position: absolute;
+  width: 7px;
+  height: 40px;
+  top: 200px;
+  right: 10px;
+}
+
+.selection_button {
+  border: 1px solid white;
+  background: red;
+  position: absolute;
+  width: 100px;
+  height: 75px;
+  top: 260px;
+  right: 10px;
+  border-radius: 10px;
+}
+
+.refund_button {
+  border: 1px solid white;
+  background: black;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 195px;
+  right: 30px;
+  border-radius: 10px;
+}
+
+.change_receptacle {
+  border: 1px solid black;
+  background: darkslategray;
+  width: 34px;
+  height: 30px;
+  position: absolute;
+  right: 30px;
+  top: 590px;
+}
