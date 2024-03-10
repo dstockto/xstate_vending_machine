@@ -14,8 +14,9 @@
 }
 
 .bottle_display {
-  border: 2px solid #311bf6;
-  background: #747bff;
+  border: 2px inset black;
+  border-radius: 5px;
+  background: linear-gradient(104deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.1) 23%, rgba(255,255,255,1) 25%, rgba(255,255,255,1) 27%, rgba(255,255,255,0.1) 28%, rgba(255,255,255,0.1) 59%, rgba(255,255,255,1) 60%, rgba(255,255,255,1) 61%, rgba(255,255,255,.1) 62%), url("/images/vending_display.png");
   width: 350px;
   height: 500px;
   position: absolute;
