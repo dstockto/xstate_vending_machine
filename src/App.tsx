@@ -20,11 +20,11 @@ function App() {
                     <div>Take Change</div>
                 }
                 {state.matches('DisplayInsufficientMoneyError') &&
-                    <div>Insert {.75 - state.context.balance}</div>
+                    <div>Insert {formatMoney(.75 - state.context.balance)}</div>
                 }
                 {
                     state.matches('DisplaySelectionPrice') &&
-                    <div>That is $.75 money</div>
+                    <div>That is <br/>$.75 money</div>
                 }
                 {
                     state.matches('DispenseSelectedItem') &&
@@ -37,12 +37,12 @@ function App() {
             <div className={"refund_button"} onClick={() => send({type: "pushRefundButton"})}></div>
             <div className={"change_receptacle"}>
                 {state.matches('Eject_Change') &&
-                    <div onClick={() => send({type: "changeEjected"})}>change</div>
+                    <div className={"change"} onClick={() => send({type: "changeEjected"})}></div>
                 }
             </div>
             <div className={"dispenser"}>
                 {state.matches('DispenseSelectedItem') &&
-                    <button onClick={() => send({type: "dispense"})}>JunkFOOD</button>
+                    <div className={"junk_food"} onClick={() => send({type: "dispense"})}>JunkFOOD</div>
                 }
             </div>
         </div>

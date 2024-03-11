@@ -26,16 +26,31 @@
 
 .dispenser {
   border: 1px solid black;
-  background: black;
+  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(17,17,17,1) 60%, rgba(82,82,82,1) 100%);
   width: 150px;
   height: 80px;
   position: absolute;
   top: 550px;
   left: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.junk_food {
+  border: 1px solid black;
+  background: linear-gradient(180deg, rgba(62,31,31,1) 0%, rgba(255,0,0,1) 35%, rgba(56,6,6,1) 100%);
+  width: 100px;
+  height: 40px;
+  font-weight: bold;
+  position: relative;
+  top: -5px;
 }
 
 .digital_display {
   border: 1px solid white;
+  font-family: "Courier New";
   width: 100px;
   height: 50px;
   position: absolute;
@@ -43,6 +58,8 @@
   left: 386px;
   background: black;
   color: red;
+  text-shadow: 3px 3px 9px rgba(242, 14, 22, 1), 2px 2px 6px rgba(237, 9, 9, 1);
+  text-align: center;
 }
 
 .coin_slot {
@@ -57,13 +74,18 @@
 
 .selection_button {
   border: 1px solid white;
-  background: red;
+  background: linear-gradient(180deg, rgba(255,154,154,1) 0%, rgba(255,0,0,1) 12%, rgba(255,0,0,1) 82%, rgba(166,0,0,1) 100%);
   position: absolute;
   width: 100px;
   height: 75px;
+  line-height: 75px;
   top: 260px;
   right: 10px;
   border-radius: 10px;
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  font-weight: bold;
 }
 
 .refund_button {
@@ -79,10 +101,18 @@
 
 .change_receptacle {
   border: 1px solid black;
-  background: darkslategray;
+  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(17,17,17,1) 60%, rgba(82,82,82,1) 100%);
   width: 34px;
   height: 30px;
   position: absolute;
   right: 30px;
   top: 590px;
+}
+
+.change {
+  height: 30px;
+  width: 34px;
+  background-size: cover;
+
+  background: url("/images/coins.png") no-repeat, linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(17,17,17,1) 60%, rgba(82,82,82,1) 100%);
 }
