@@ -5,9 +5,10 @@ import {machine} from "./machine.ts";
 function App() {
     const [state, send] = useMachine(machine);
 
-    let formatMoney = (money: number) => {
+    const formatMoney = (money: number) => {
         return '$' + money.toFixed(2);
     }
+    const junkFoodCost = 0.75;
 
     return (
         <div className={"vending_machine"}>
@@ -20,11 +21,11 @@ function App() {
                     <div>Take Change</div>
                 }
                 {state.matches('DisplayInsufficientMoneyError') &&
-                    <div>Insert {formatMoney(.75 - state.context.balance)}</div>
+                    <div>Insert {formatMoney(junkFoodCost - state.context.balance)}</div>
                 }
                 {
                     state.matches('DisplaySelectionPrice') &&
-                    <div>That is <br/>$.75 money</div>
+                    <div>Junk food is {formatMoney(junkFoodCost)}</div>
                 }
                 {
                     state.matches('DispenseSelectedItem') &&
@@ -44,6 +45,7 @@ function App() {
                 {state.matches('DispenseSelectedItem') &&
                     <div className={"junk_food"} onClick={() => send({type: "dispense"})}>JunkFOOD</div>
                 }
+                <div className={"dispenser_catch"}></div>
             </div>
         </div>
     );

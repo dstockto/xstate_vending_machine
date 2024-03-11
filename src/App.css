@@ -7,7 +7,7 @@
 
 .vending_machine {
   border: 2px solid black;
-  background: #0f6ee5;
+  background: linear-gradient(180deg, rgba(15,110,229,1) 0%, rgba(4,31,64,1) 95%, rgba(0,0,0,1) 100%);
   position: relative;
   width: 500px;
   height: 700px;
@@ -38,25 +38,35 @@
   align-items: center;
 }
 
+.dispenser_catch {
+  width: 160px;
+  height: 25px;
+  background: black;
+  z-index: 1;
+}
+
 .junk_food {
   border: 1px solid black;
-  background: linear-gradient(180deg, rgba(62,31,31,1) 0%, rgba(255,0,0,1) 35%, rgba(56,6,6,1) 100%);
+  background: linear-gradient(180deg, rgba(62, 31, 31, 1) 0%, rgba(255, 0, 0, 1) 35%, rgba(56, 6, 6, 1) 100%);
   width: 100px;
   height: 40px;
   font-weight: bold;
   position: relative;
-  top: -5px;
+  top: 10px;
+  line-height: 40px;
+  font-style: italic;
 }
 
 .digital_display {
-  border: 1px solid white;
+  border: 1px inset black;
   font-family: "Courier New";
+  font-weight: bold;
   width: 100px;
   height: 50px;
   position: absolute;
   top: 75px;
   left: 386px;
-  background: black;
+  background: linear-gradient(180deg, rgba(33, 45, 60, 1) 0%, rgba(57, 57, 57, 0.9878151944371498) 43%, rgba(34, 34, 34, 1) 100%);
   color: red;
   text-shadow: 3px 3px 9px rgba(242, 14, 22, 1), 2px 2px 6px rgba(237, 9, 9, 1);
   text-align: center;
@@ -64,7 +74,7 @@
 
 .coin_slot {
   border: 1px solid black;
-  background: yellow;
+  background: linear-gradient(270deg, rgba(0,0,0,1) 0%, rgba(17,17,17,1) 60%, rgba(82,82,82,1) 100%);
   position: absolute;
   width: 7px;
   height: 40px;
@@ -74,7 +84,7 @@
 
 .selection_button {
   border: 1px solid white;
-  background: linear-gradient(180deg, rgba(255,154,154,1) 0%, rgba(255,0,0,1) 12%, rgba(255,0,0,1) 82%, rgba(166,0,0,1) 100%);
+  background: linear-gradient(180deg, rgba(255,154,154,1) 0%, rgba(255,0,0,1) 12%, rgba(255,0,0,1) 82%, rgba(166,0,0,1) 100%), linear-gradient(45deg, rgba(255,154,154,1) 0%, rgba(255,0,0,1) 12%, rgba(255,0,0,1) 82%, rgba(166,0,0,1) 100%);
   position: absolute;
   width: 100px;
   height: 75px;
@@ -90,7 +100,7 @@
 
 .refund_button {
   border: 1px solid white;
-  background: black;
+  background: linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(17,17,17,1) 60%, rgba(82,82,82,1) 100%);
   position: absolute;
   width: 20px;
   height: 20px;
@@ -113,6 +123,5 @@
   height: 30px;
   width: 34px;
   background-size: cover;
-
   background: url("/images/coins.png") no-repeat, linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(17,17,17,1) 60%, rgba(82,82,82,1) 100%);
 }
