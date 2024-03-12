@@ -14,21 +14,21 @@ function App() {
         <div className={"vending_machine"}>
             <div className={"digital_display"}>
                 {!state.hasTag('displayMessage') && <div>{formatMoney(state.context.balance)}</div>}
-                {state.matches('DisplayNoMoneyError') &&
+                {state.hasTag('DisplayNoMoneyError') &&
                     <div>No Money</div>
                 }
-                {state.matches('Eject_Change') &&
+                {state.hasTag('Eject_Change') &&
                     <div>Take Change</div>
                 }
-                {state.matches('DisplayInsufficientMoneyError') &&
+                {state.hasTag('DisplayInsufficientMoneyError') &&
                     <div>Insert {formatMoney(junkFoodCost - state.context.balance)}</div>
                 }
                 {
-                    state.matches('DisplaySelectionPrice') &&
+                    state.hasTag('DisplaySelectionPrice') &&
                     <div>Junk food is {formatMoney(junkFoodCost)}</div>
                 }
                 {
-                    state.matches('DispenseSelectedItem') &&
+                    state.hasTag('DispenseSelectedItem') &&
                     <div>Plz Remove Item</div>
                 }
             </div>
@@ -37,13 +37,13 @@ function App() {
             <div className={"selection_button"} onClick={() => send({type: "pushSelectionButton"})}>Junk Food</div>
             <div className={"refund_button"} onClick={() => send({type: "pushRefundButton"})}></div>
             <div className={"change_receptacle"}>
-                {state.matches('Eject_Change') &&
-                    <div className={"change"} onClick={() => send({type: "changeEjected"})}></div>
+                {state.hasTag('hasCoins') &&
+                    <div className={"change"} onClick={() => send({type: "takeCoins"})}></div>
                 }
             </div>
             <div className={"dispenser"}>
-                {state.matches('DispenseSelectedItem') &&
-                    <div className={"junk_food"} onClick={() => send({type: "dispense"})}>JunkFOOD</div>
+                {state.hasTag('hasItems') &&
+                    <div className={"junk_food"} onClick={() => send({type: "takeItem"})}>JunkFOOD</div>
                 }
                 <div className={"dispenser_catch"}></div>
             </div>
