@@ -24,6 +24,9 @@ export const machine = setup({
         hasBalance: function ({ context }) {
             return context.balance > 0
         },
+        noBalance: function ({context}) {
+            return context.balance === 0
+        }
     },
     schemas: {
         events: {
@@ -67,31 +70,47 @@ export const machine = setup({
     type: "parallel",
     states: {
         VendingMachine: {
-            initial: "IdleWithNoMoney",
+            initial: "Idle",
             states: {
-                IdleWithNoMoney: {
-                    tags: ['IdleWithNoMoney'],
+                Idle: {
+                    tags: "Idle",
                     on: {
                         putInMoney: {
                             target: "AddMoney",
                         },
-                        pushSelectionButton: {
-                            target: "DisplaySelectionPrice",
-                        },
-                        pushRefundButton: {
-                            target: "DisplayNoMoneyError",
-                        },
-                    },
-                    always: {
-                        guard: {
-                            type: "hasBalance",
-                        },
-                        target: "IdleWithMoney"
+                        pushSelectionButton: [
+                            {
+                                target: "DisplaySelectionPrice",
+                                guard: {
+                                    type: "noBalance"
+                                }
+                            },
+                            {
+                                target: "DispenseSelectedItem",
+                                guard: {
+                                    type: "ifSufficientMoney",
+                                },
+                            },
+                            {
+                                target: "DisplayInsufficientMoneyError"
+                            }
+                        ],
+                        pushRefundButton: [
+                            {
+                                target: "DisplayNoMoneyError",
+                                guard: {
+                                    type: "noBalance",
+                                }
+                            },
+                            {
+                                target: "Eject_Change"
+                            }
+                        ]
                     }
                 },
                 AddMoney: {
                     always: {
-                        target: "IdleWithMoney",
+                        target: "Idle",
                     },
                     entry: {
                         type: "incrementMoney",
@@ -106,7 +125,7 @@ export const machine = setup({
                     },
                     after: {
                         "3000": {
-                            target: "IdleWithNoMoney",
+                            target: "Idle",
                         },
                     },
                 },
@@ -119,36 +138,14 @@ export const machine = setup({
                     },
                     after: {
                         "3000": {
-                            target: "IdleWithNoMoney",
+                            target: "Idle",
                         },
-                    },
-                },
-                IdleWithMoney: {
-                    tags: ['IdleWithMoney'],
-                    on: {
-                        pushRefundButton: {
-                            target: "Eject_Change",
-                        },
-                        putInMoney: {
-                            target: "AddMoney",
-                        },
-                        pushSelectionButton: [
-                            {
-                                target: "DispenseSelectedItem",
-                                guard: {
-                                    type: "ifSufficientMoney",
-                                },
-                            },
-                            {
-                                target: "DisplayInsufficientMoneyError",
-                            },
-                        ],
                     },
                 },
                 Eject_Change: {
                     tags: ['displayMessage', 'Eject_Change'],
                     after: {
-                        "3000": "IdleWithNoMoney",
+                        "3000": "Idle",
                     },
                     entry: {
                         type: "resetBalance",
@@ -157,7 +154,12 @@ export const machine = setup({
                 DispenseSelectedItem: {
                     tags: ['displayMessage', 'DispenseSelectedItem'],
                     after: {
-                        "3000": "IdleWithNoMoney",
+                        "3000": "Idle",
+                    },
+                    on: {
+                        putInMoney: {
+                            target: "AddMoney",
+                        },
                     },
                     entry: [{
                         type: "chargeBalance",
@@ -172,24 +174,9 @@ export const machine = setup({
                     },
                     after: {
                         "3000": {
-                            target: "IdleWithMoney",
+                            target: "Idle",
                         },
                     },
-                },
-                ItemDispensed: {
-                    tags: ['displayMessage', 'ItemDispensed'],
-                    always: [
-                        {
-                            target: "IdleWithMoney",
-                            guard: {
-                                type: "hasBalance",
-                            },
-                        },
-                        {
-                            target: "IdleWithNoMoney",
-                        },
-                    ],
-
                 },
             }
         },
